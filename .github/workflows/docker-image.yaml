@@ -1,0 +1,28 @@
+name: Build Cloudflared Tunnel Image
+
+on:
+  push:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 0 * * *"
+#  pull_request:
+#    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    # - name: get binary file for linux-amd64
+    #   run: |
+    #     # url=$(curl -s https://api.github.com/repos/cloudflare/cloudflared/releases/latest | grep -w "browser_download_url.*cloudflared-linux-amd64" | head -1 | cut -d : -f 2,3 | tr -d \")
+    #     url="https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64"
+    #     curl -L --output "cloudflared" $url
+
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag leeleo/cloudflared-tunel:latest
+
+
