@@ -1,8 +1,12 @@
 name: Build Cloudflared Tunnel Image
 
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
 on:
-  push:
-    branches: [ "main" ]
+  watch:
+    types: [starred]
+#   push:
+#     branches: [ "main" ]
 #   schedule:
 #     - cron: "0 0 * * *"
 #  pull_request:
